@@ -33,13 +33,14 @@ exports.createPages = ({ actions, graphql }) => {
 
         posts.forEach(edge => {
             const id = edge.node.id
+
             createPage({
                 path: edge.node.fields.slug,
                 tags: edge.node.frontmatter.tags,
                 component: path.resolve(
                     `src/templates/${String(
                         edge.node.frontmatter.templateKey
-                    )}.js`
+                    )}.tsx`
                 ),
                 // additional data can be passed via context
                 context: {
@@ -65,7 +66,7 @@ exports.createPages = ({ actions, graphql }) => {
 
             createPage({
                 path: tagPath,
-                component: path.resolve(`src/templates/tags.js`),
+                component: path.resolve(`src/templates/tags.tsx`),
                 context: {
                     tag,
                 },
