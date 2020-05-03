@@ -14,6 +14,7 @@ import { HomeNavigation } from '../styles/HomeNavigation';
 import { Profile } from '../components/Profile';
 import { Container } from '../styles/Container';
 import { PersonalDescription } from '../styles/PersonalDescription';
+import { BlogListContainer } from '../styles/BlogListContainer';
 
 interface IndexPageTemplateProps {
     image: {
@@ -48,21 +49,23 @@ export const IndexPageTemplate: React.SFC<IndexPageTemplateProps> = ({
                 </HomeNavigation>
 
                 <div className="flex items-center">
-                    <div className="fl w-30">
+                    <div className="w-30">
                         <Profile image={image} social={social} />
                     </div>
 
-                    <PersonalDescription className="fl w-70">
+                    <PersonalDescription className="w-70">
                         <h1>{title}</h1>
                         <p>{description}</p>
                     </PersonalDescription>
                 </div>
             </Container>
         </Header>
-        <h3>{heading}</h3>
-        <div>
-            <BlogRoll />
-        </div>
+        <Container>
+            <BlogListContainer>
+                <h2>{heading}</h2>
+                <BlogRoll />
+            </BlogListContainer>
+        </Container>
         <HomeBoxes>
             <ColoredBox background={colors.primaryRed}>
                 <h3>Talks</h3>
