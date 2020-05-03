@@ -1,13 +1,14 @@
-import React from 'react'
-import { Helmet } from 'react-helmet'
-import { MainHeader } from './MainHeader'
-import Footer from '../components/Footer'
-import './all.scss'
-import useSiteMetadata from './SiteMetadata'
-import { withPrefix } from 'gatsby'
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import { Navigation } from './Navigation';
+import { Footer } from '../components/Footer';
+import { GlobalStyles } from '../styles/GlobalStyles';
+import './all.scss';
+import useSiteMetadata from './SiteMetadata';
+import { withPrefix } from 'gatsby';
 
-export const Layout = ({ children }) => {
-    const { title, description } = useSiteMetadata()
+export const Layout: React.SFC<{ children: React.ReactNode, hideHeader?: boolean }> = ({ children, hideHeader }) => {
+    const { title, description } = useSiteMetadata();
     return (
         <div>
             <Helmet>
@@ -38,6 +39,12 @@ export const Layout = ({ children }) => {
                     href={`${withPrefix('/')}img/safari-pinned-tab.svg`}
                     color="#ff4400"
                 />
+
+                <link
+                    href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto:ital,wght@0,400;0,700;1,400&display=swap"
+                    rel="stylesheet"
+                />
+
                 <meta name="theme-color" content="#fff" />
 
                 <meta property="og:type" content="business.business" />
@@ -48,9 +55,10 @@ export const Layout = ({ children }) => {
                     content={`${withPrefix('/')}img/og-image.jpg`}
                 />
             </Helmet>
-            <MainHeader />
+            <GlobalStyles />
+            {!hideHeader && <Navigation />}
             <div>{children}</div>
             <Footer />
         </div>
-    )
-}
+    );
+};
