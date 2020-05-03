@@ -1,53 +1,90 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
-import Img from "gatsby-image"
+
+import { FluidObject } from 'gatsby-image';
 
 import { Layout } from '../components/Layout';
 import BlogRoll from '../components/BlogRoll';
+import { HomeBoxes } from '../styles/HomeBoxes';
+import { ColoredBox } from '../styles/ColoredBox';
+import { colors } from '../styles/variables/colors';
+import { Header } from '../styles/Header';
+import { Navigation } from '../components/Navigation';
+import { HomeNavigation } from '../styles/HomeNavigation';
+import { Profile } from '../components/Profile';
+import { Container } from '../styles/Container';
+import { PersonalDescription } from '../styles/PersonalDescription';
 
-export const IndexPageTemplate = ({
+interface IndexPageTemplateProps {
+    image: {
+        childImageSharp: { fluid: FluidObject };
+    };
+    title: string;
+    description: string;
+    heading: string;
+    social: Array<{ image: { publicURL: string }; link: string }>;
+}
+
+interface IndexPageProps {
+    data: {
+        markdownRemark: {
+            frontmatter: IndexPageTemplateProps;
+        };
+    };
+}
+
+export const IndexPageTemplate: React.SFC<IndexPageTemplateProps> = ({
     image,
     title,
     description,
     heading,
     social
 }) => (
-    <div>
-        <img src={image.childImageSharp.fluid.src} alt="Samuel Martins" />
-        <div>
-            <h1>{title}</h1>
-            <p>{description}</p>
-        </div>
-        <ul>
-            {social.map(s => (
-                <li>
-                    <a href={s.link}>
-                        <img alt={s.link} src={s.image.publicURL} />
-                    </a>
-                </li>
-            ))}
-        </ul>
+    <>
+        <Header>
+            <Container>
+                <HomeNavigation>
+                    <Navigation />
+                </HomeNavigation>
+
+                <div className="flex items-center">
+                    <div className="fl w-30">
+                        <Profile image={image} social={social} />
+                    </div>
+
+                    <PersonalDescription className="fl w-70">
+                        <h1>{title}</h1>
+                        <p>{description}</p>
+                    </PersonalDescription>
+                </div>
+            </Container>
+        </Header>
         <h3>{heading}</h3>
         <div>
             <BlogRoll />
         </div>
-    </div>
+        <HomeBoxes>
+            <ColoredBox background={colors.primaryRed}>
+                <h3>Talks</h3>
+                <div className="box-description">
+                    Palestras, apresentações e etc
+                </div>
+            </ColoredBox>
+            <ColoredBox background={colors.primaryYellow}>
+                <h3>Artigos</h3>
+                <div className="box-description">
+                    Publicações e trabalhos de conclusão de curso
+                </div>
+            </ColoredBox>
+        </HomeBoxes>
+    </>
 );
 
-IndexPageTemplate.propTypes = {
-    image: PropTypes.string,
-    title: PropTypes.string,
-    heading: PropTypes.string,
-    description: PropTypes.string,
-    social: PropTypes.array
-};
-
-const IndexPage = ({ data }) => {
+const IndexPage: React.SFC<IndexPageProps> = ({ data }) => {
     const { frontmatter } = data.markdownRemark;
 
     return (
-        <Layout>
+        <Layout hideHeader={true}>
             <IndexPageTemplate
                 image={frontmatter.image}
                 title={frontmatter.title}
@@ -57,14 +94,6 @@ const IndexPage = ({ data }) => {
             />
         </Layout>
     );
-};
-
-IndexPage.propTypes = {
-    data: PropTypes.shape({
-        markdownRemark: PropTypes.shape({
-            frontmatter: PropTypes.object
-        })
-    })
 };
 
 export default IndexPage;
