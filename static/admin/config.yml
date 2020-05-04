@@ -45,18 +45,18 @@ collections:
                       widget: 'hidden',
                       default: 'index-page',
                   }
-                - { label: Title, name: title, widget: string }
-                - { label: Image, name: image, widget: image }
-                - { label: Heading, name: heading, widget: string }
-                - { label: Description, name: description, widget: string }
+                - { label: 'Title', name: 'title', widget: 'string' }
+                - { label: 'Image', name: 'image', widget: 'image' }
+                - { label: 'Heading', name: 'heading', widget: 'string' }
+                - { label: 'Description', name: 'description', widget: 'string' }
                 - {
-                      label: Social,
-                      name: social,
-                      widget: object,
+                      label: 'Social',
+                      name: 'social',
+                      widget: 'object',
                       fields:
                           [
-                              { label: Image, name: image, widget: image },
-                              { label: Link, name: link, widget: string },
+                              { label: 'Image', name: 'image', widget: 'image' },
+                              { label: 'Link', name: 'link', widget: 'string' },
                           ],
                   }
           - file: 'src/pages/about2/index.md'
