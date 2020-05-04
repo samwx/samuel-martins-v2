@@ -7,7 +7,10 @@ import './all.scss';
 import useSiteMetadata from './SiteMetadata';
 import { withPrefix } from 'gatsby';
 
-export const Layout: React.SFC<{ children: React.ReactNode, hideHeader?: boolean }> = ({ children, hideHeader }) => {
+export const Layout: React.FunctionComponent<{
+    children: React.ReactNode;
+    hideHeader?: boolean;
+}> = ({ children, hideHeader }) => {
     const { title, description } = useSiteMetadata();
     return (
         <div>
@@ -58,7 +61,9 @@ export const Layout: React.SFC<{ children: React.ReactNode, hideHeader?: boolean
             <GlobalStyles />
             {!hideHeader && <Navigation />}
             <div>{children}</div>
-            <Footer />
+            <Footer>
+                © Copyright {new Date().getFullYear()}. Todos os direitos reservados
+            </Footer>
         </div>
     );
 };
