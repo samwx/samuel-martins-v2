@@ -1,5 +1,5 @@
 ---
-templateKey: index-page
+templateKey: 'index-page'
 title: Samuel Martins
 image: /img/me.png
 heading: Últimas do blog
