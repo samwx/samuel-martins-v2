@@ -32,42 +32,42 @@ collections:
           - { label: 'Body', name: 'body', widget: 'markdown' }
           - { label: 'Tags', name: 'tags', widget: 'list' }
 
-    - name: 'pages'
-      label: 'Pages'
+    - name: pages
+      label: Pages
       files:
-          - file: 'src/pages/index.md'
-            label: 'Home'
-            name: 'index'
+          - file: src/pages/index.md
+            label: Home
+            name: index
             fields:
                 - {
-                      label: 'Template Key',
-                      name: 'templateKey',
-                      widget: 'hidden',
-                      default: 'index-page',
+                      label: Template Key,
+                      name: templateKey,
+                      widget: hidden,
+                      default: index-page,
                   }
-                - { label: 'Title', name: 'title', widget: 'string' }
-                - { label: 'Image', name: 'image', widget: 'image' }
-                - { label: 'Heading', name: 'heading', widget: 'string' }
-                - { label: 'Description', name: 'description', widget: 'string' }
+                - { label: Title, name: title, widget: string }
+                - { label: Image, name: image, widget: image }
+                - { label: Heading, name: heading, widget: string }
+                - { label: Description, name: description, widget: string }
                 - {
-                      label: 'Social',
-                      name: 'social',
-                      widget: 'object',
+                      label: Social,
+                      name: social,
+                      widget: object,
                       fields:
                           [
-                              { label: 'Image', name: 'image', widget: 'image' },
-                              { label: 'Link', name: 'link', widget: 'string' },
+                              { label: Icon, name: icon, widget: image },
+                              { label: Link, name: link, widget: string },
                           ],
                   }
-          - file: 'src/pages/about2/index.md'
-            label: 'About'
-            name: 'about'
+          - file: src/pages/about2/index.md
+            label: About
+            name: about
             fields:
                 - {
-                      label: 'Template Key',
-                      name: 'templateKey',
-                      widget: 'hidden',
-                      default: 'about2-page',
+                      label: Template Key,
+                      name: templateKey,
+                      widget: hidden,
+                      default: about2-page,
                   }
-                - { label: 'Title', name: 'title', widget: 'string' }
-                - { label: 'Body', name: 'body', widget: 'markdown' }
+                - { label: Title, name: title, widget: string }
+                - { label: Body, name: body, widget: markdown }

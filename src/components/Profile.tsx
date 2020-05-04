@@ -6,10 +6,10 @@ interface ProfileProps {
     image: {
         childImageSharp: { fluid: FluidObject };
     };
-    social: Array<{ image: { publicURL: string }; link: string }>;
+    social: Array<{ icon: { publicURL: string }; link: string }>;
 }
 
-export const Profile: React.SFC<ProfileProps> = ({ image, social }) => (
+export const Profile: React.FunctionComponent<ProfileProps> = ({ image, social }) => (
     <PersonalProfile>
         <figure>
             <img src={image.childImageSharp.fluid.src} alt="Samuel Martins" />
@@ -18,7 +18,7 @@ export const Profile: React.SFC<ProfileProps> = ({ image, social }) => (
             {social.map(s => (
                 <li>
                     <a href={s.link}>
-                        <img alt={s.link} src={s.image.publicURL} />
+                        <img alt={s.link} src={s.icon.publicURL} />
                     </a>
                 </li>
             ))}

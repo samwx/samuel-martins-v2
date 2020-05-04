@@ -1,10 +1,9 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 
 import { FluidObject } from 'gatsby-image';
 
 import { Layout } from '../components/Layout';
-import BlogRoll from '../components/BlogRoll';
 import { HomeBoxes } from '../styles/HomeBoxes';
 import { ColoredBox } from '../styles/ColoredBox';
 import { colors } from '../styles/variables/colors';
@@ -15,6 +14,10 @@ import { Profile } from '../components/Profile';
 import { Container } from '../styles/Container';
 import { PersonalDescription } from '../styles/PersonalDescription';
 import { BlogListContainer } from '../styles/BlogListContainer';
+import { FeaturedPosts } from '../components/FeaturedPosts';
+
+const CommentText = require('../../static/img/comment-text@2x.png');
+const NoteText = require('../../static/img/note-text@2x.png');
 
 interface IndexPageTemplateProps {
     image: {
@@ -23,7 +26,7 @@ interface IndexPageTemplateProps {
     title: string;
     description: string;
     heading: string;
-    social: Array<{ image: { publicURL: string }; link: string }>;
+    social: Array<{ icon: { publicURL: string }; link: string }>;
 }
 
 interface IndexPageProps {
@@ -34,7 +37,7 @@ interface IndexPageProps {
     };
 }
 
-export const IndexPageTemplate: React.SFC<IndexPageTemplateProps> = ({
+export const IndexPageTemplate: React.FunctionComponent<IndexPageTemplateProps> = ({
     image,
     title,
     description,
@@ -63,27 +66,39 @@ export const IndexPageTemplate: React.SFC<IndexPageTemplateProps> = ({
         <Container>
             <BlogListContainer>
                 <h2>{heading}</h2>
-                <BlogRoll />
+                <FeaturedPosts />
             </BlogListContainer>
         </Container>
-        <HomeBoxes>
-            <ColoredBox background={colors.primaryRed}>
-                <h3>Talks</h3>
-                <div className="box-description">
-                    Palestras, apresentações e etc
-                </div>
-            </ColoredBox>
-            <ColoredBox background={colors.primaryYellow}>
-                <h3>Artigos</h3>
-                <div className="box-description">
-                    Publicações e trabalhos de conclusão de curso
-                </div>
-            </ColoredBox>
-        </HomeBoxes>
+        <Container>
+            <HomeBoxes>
+                <Link to="/talks">
+                    <ColoredBox
+                        background={colors.primaryRed}
+                        icon={CommentText}
+                    >
+                        <h3>Talks</h3>
+                        <div className="box-description">
+                            Palestras, apresentações e etc
+                        </div>
+                    </ColoredBox>
+                </Link>
+                <Link to="/artigos">
+                    <ColoredBox
+                        background={colors.primaryYellow}
+                        icon={NoteText}
+                    >
+                        <h3>Artigos</h3>
+                        <div className="box-description">
+                            Publicações e trabalhos de conclusão de curso
+                        </div>
+                    </ColoredBox>
+                </Link>
+            </HomeBoxes>
+        </Container>
     </>
 );
 
-const IndexPage: React.SFC<IndexPageProps> = ({ data }) => {
+const IndexPage: React.FunctionComponent<IndexPageProps> = ({ data }) => {
     const { frontmatter } = data.markdownRemark;
 
     return (
@@ -117,7 +132,7 @@ export const pageQuery = graphql`
                 description
                 social {
                     link
-                    image {
+                    icon {
                         publicURL
                     }
                 }
