@@ -2,7 +2,7 @@
 templateKey: index-page
 title: Samuel Martins
 image: /img/me.png
-heading: Blog
+heading: Últimas do blog
 description: >
   Olá, meu nome é Samuel Martins! Atualmente sou desenvolvedor de software na
   Take atuando com ênfase em sistemas front-end. Sou especialista em Arquitetura
@@ -10,7 +10,7 @@ description: >
   cursos e disciplinas.
 social:
   - icon: /img/github.svg
-    link: https://github.com/samwx-teste
+    link: https://github.com/samwx
   - icon: /img/linkedin.svg
     link: https://www.linkedin.com/in/samwx
   - icon: /img/twitter.svg
