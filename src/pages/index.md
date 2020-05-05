@@ -2,7 +2,7 @@
 templateKey: index-page
 title: Samuel Martins
 image: /img/me.png
-heading: Últimas do blog
+heading: Blog
 description: >
   Olá, meu nome é Samuel Martins! Atualmente sou desenvolvedor de software na
   Take atuando com ênfase em sistemas front-end. Sou especialista em Arquitetura
