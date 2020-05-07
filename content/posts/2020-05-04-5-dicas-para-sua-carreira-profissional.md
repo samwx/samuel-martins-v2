@@ -5,7 +5,6 @@ date: 2020-05-03T23:58:41.453Z
 description: Confira algumas dicas que podem ajudar a alavancar sua carreira
   como desenvolvedor front-end
 featuredpost: true
-featuredimage: /img/flavor_wheel.jpg
 tags:
   - teste3
 ---
