@@ -8,6 +8,7 @@ module.exports = {
         'gatsby-plugin-sass',
         'gatsby-plugin-typescript',
         'gatsby-remark-reading-time',
+        'gatsby-plugin-styled-components',
         {
             // keep as first gatsby-source-filesystem plugin for gatsby image support
             resolve: 'gatsby-source-filesystem',
