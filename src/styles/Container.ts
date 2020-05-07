@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.div<{ display?: string }>`
     margin: 0 auto;
+    ${({ display }) => display ? `display: ${display};` : ''}
 
     // Small devices (landscape phones, 576px and up)
     @media (min-width: 576px) {
