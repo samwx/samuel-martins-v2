@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import { PostListItem } from '../styles/PostListItem';
+import PreviewCompatibleImage from './PreviewCompatibleImage';
 
 interface PostItemProps {
     post: {
@@ -8,12 +9,18 @@ interface PostItemProps {
         fields: any;
         frontmatter: any;
     };
+    showImage?: boolean;
+    showReadTime?: boolean;
 }
 
-export const PostItem: React.FunctionComponent<PostItemProps> = ({ post }) => (
+export const PostItem: React.FunctionComponent<PostItemProps> = ({
+    post,
+    showImage,
+    showReadTime,
+}) => (
     <PostListItem>
         <header>
-            <h3>
+            <h3 className="post-title">
                 <Link
                     className="title has-text-primary is-size-4"
                     to={post.fields.slug}
@@ -21,7 +28,17 @@ export const PostItem: React.FunctionComponent<PostItemProps> = ({ post }) => (
                     {post.frontmatter.title}
                 </Link>
             </h3>
-            <p className="post-meta">{post.frontmatter.date}</p>
+            {showImage && post.frontmatter.featuredimage ? (
+                <div className="featured-thumbnail">
+                    <PreviewCompatibleImage
+                        imageInfo={{
+                            image: post.frontmatter.featuredimage,
+                            alt: post.frontmatter.title,
+                        }}
+                    />
+                </div>
+            ) : undefined}
+            <p className="post-meta">{post.frontmatter.date} {showReadTime && `• 📚 Leitura de ${Math.round(post.fields.readingTime.minutes)} min`}</p>
         </header>
         <p className="post-item-description">{post.frontmatter.description}</p>
     </PostListItem>
