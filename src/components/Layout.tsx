@@ -6,6 +6,10 @@ import { GlobalStyles } from '../styles/GlobalStyles';
 import './all.scss';
 import useSiteMetadata from './SiteMetadata';
 import { withPrefix } from 'gatsby';
+import { MainNavigation } from '../styles/MainNavigation';
+import { InlineMenu } from '../styles/InlineMenu';
+import { colors } from '../styles/variables/colors';
+import { CommonHeader } from './CommonHeader';
 
 export const Layout: React.FunctionComponent<{
     children: React.ReactNode;
@@ -22,25 +26,19 @@ export const Layout: React.FunctionComponent<{
                 <link
                     rel="apple-touch-icon"
                     sizes="180x180"
-                    href={`${withPrefix('/')}img/apple-touch-icon.png`}
+                    href={`${withPrefix('/')}img/me.png`}
                 />
                 <link
                     rel="icon"
                     type="image/png"
-                    href={`${withPrefix('/')}img/favicon-32x32.png`}
+                    href={`${withPrefix('/')}img/me.png`}
                     sizes="32x32"
                 />
                 <link
                     rel="icon"
                     type="image/png"
-                    href={`${withPrefix('/')}img/favicon-16x16.png`}
+                    href={`${withPrefix('/')}img/me.png`}
                     sizes="16x16"
-                />
-
-                <link
-                    rel="mask-icon"
-                    href={`${withPrefix('/')}img/safari-pinned-tab.svg`}
-                    color="#ff4400"
                 />
 
                 <link
@@ -48,7 +46,7 @@ export const Layout: React.FunctionComponent<{
                     rel="stylesheet"
                 />
 
-                <meta name="theme-color" content="#fff" />
+                <meta name="theme-color" content={colors.primaryBlue} />
 
                 <meta property="og:type" content="business.business" />
                 <meta property="og:title" content={title} />
@@ -59,10 +57,11 @@ export const Layout: React.FunctionComponent<{
                 />
             </Helmet>
             <GlobalStyles />
-            {!hideHeader && <Navigation />}
+            {!hideHeader && <CommonHeader />}
             <div>{children}</div>
             <Footer>
-                © Copyright {new Date().getFullYear()}. Todos os direitos reservados
+                © Copyright {new Date().getFullYear()}. Todos os direitos
+                reservados
             </Footer>
         </div>
     );
