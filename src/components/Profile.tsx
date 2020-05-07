@@ -12,7 +12,7 @@ interface ProfileProps {
 export const Profile: React.FunctionComponent<ProfileProps> = ({ image, social }) => (
     <PersonalProfile>
         <figure>
-            <img src={image.childImageSharp.fluid.src} alt="Samuel Martins" />
+            <img src={image?.childImageSharp?.fluid?.src} alt="Samuel Martins" />
         </figure>
         <ul>
             {social.map(s => (
