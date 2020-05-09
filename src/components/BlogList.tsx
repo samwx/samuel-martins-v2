@@ -11,10 +11,9 @@ const BlogRoll: React.FunctionComponent<BlogRollProps> = ({ data }) => {
 
     return (
         <div>
-            {posts &&
-                posts.map(({ node: post }) => (
-                    <PostItem post={post} showImage={true} showReadTime={true} />
-                ))}
+            {posts?.map(({ node: post }) => (
+                <PostItem key={post.id} post={post} showImage={true} showReadTime={true} />
+            ))}
         </div>
     );
 };
