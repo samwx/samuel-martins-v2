@@ -2,7 +2,7 @@ import React from 'react';
 import { MainNavigation } from '../styles/MainNavigation';
 import { InlineMenu } from '../styles/InlineMenu';
 import { Navigation } from './Navigation';
-import { graphql, StaticQuery } from 'gatsby';
+import { graphql, StaticQuery, Link } from 'gatsby';
 import { Container } from '../styles/Container';
 
 const pageQuery = graphql`
@@ -28,14 +28,16 @@ export const CommonHeader = () => (
             <MainNavigation>
                 <Container display="flex">
                     <figure>
-                        <img
-                            src={
-                                data?.markdownRemark?.frontmatter?.image
-                                    ?.childImageSharp?.fluid?.src
-                            }
-                            alt="Samuel Martins"
-                        />
-                        <h3>Samuel Martins</h3>
+                        <Link to="/">
+                            <img
+                                src={
+                                    data?.markdownRemark?.frontmatter?.image
+                                        ?.childImageSharp?.fluid?.src
+                                }
+                                alt="Samuel Martins"
+                            />
+                            <h3>Samuel Martins</h3>
+                        </Link>
                     </figure>
                     <InlineMenu>
                         <Navigation />
