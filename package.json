@@ -7,9 +7,11 @@
         "@types/react": "^16.9.34",
         "@types/react-dom": "^16.9.6",
         "@types/styled-components": "^5.1.0",
+        "algoliasearch": "^4.2.0",
         "babel-plugin-styled-components": "^1.10.7",
         "gatsby": "^2.21.9",
         "gatsby-image": "^2.0.23",
+        "gatsby-plugin-algolia": "^0.11.0",
         "gatsby-plugin-netlify": "^2.0.6",
         "gatsby-plugin-netlify-cms": "^4.1.6",
         "gatsby-plugin-purgecss": "^4.0.0",
@@ -32,9 +34,11 @@
         "netlify-cms-media-library-uploadcare": "^0.5.2",
         "node-sass": "^4.11.0",
         "prop-types": "^15.6.0",
+        "qs": "^6.9.4",
         "react": "^16.8.4",
         "react-dom": "^16.8.4",
         "react-helmet": "^5.2.0",
+        "react-instantsearch-dom": "^6.4.0",
         "styled-components": "^5.1.0",
         "uuid": "^3.2.1"
     },
@@ -52,6 +56,7 @@
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "devDependencies": {
+        "dotenv": "^8.2.0",
         "gatsby-remark-static-images": "^1.0.1",
         "prettier": "^1.15.3"
     }
