@@ -5,7 +5,7 @@ import PreviewCompatibleImage from './PreviewCompatibleImage';
 
 interface PostItemProps {
     post: {
-        id: number;
+        id?: number;
         fields: any;
         frontmatter: any;
     };
