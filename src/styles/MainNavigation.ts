@@ -8,10 +8,18 @@ export const MainNavigation = styled.nav`
     padding: 25px;
 
     figure {
-        display: flex;
-        align-items: center;
         color: ${colors.white};
         width: 50%;
+
+        a {
+            padding: 0;
+            display: flex;
+            align-items: center;
+
+            &:hover {
+                background: transparent;
+            }
+        }
 
         h3 {
             font-size: 18px;
