@@ -1,36 +1,63 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactElement } from 'react';
 import { kebabCase } from 'lodash';
 import Helmet from 'react-helmet';
 import { graphql, Link } from 'gatsby';
+import Img from 'gatsby-image';
 import { Layout } from '../components/Layout';
 import Content, { HTMLContent } from '../components/Content';
+import { Container } from '../styles/Container';
+import { PageTitle } from '../styles/PageTitle';
+import { PostHeader } from '../styles/PostHeader';
+import { PostContainer } from '../styles/PostContainer';
+import { InlineList } from '../styles/InlineList';
+import { Share } from '../components/Share';
 
-export const BlogPostTemplate = ({
+interface BlogPostTemplate {
+    content: ReactElement;
+    contentComponent: () => ReactElement;
+    title: string;
+    helmet: any;
+    tags: Array<string>;
+    readingTime: { minutes: number };
+    date: string;
+    featuredimage: any;
+}
+
+const BlogPostTemplate: React.FunctionComponent<BlogPostTemplate> = ({
     content,
     contentComponent,
-    description,
     tags,
     title,
-    helmet
+    helmet,
+    readingTime,
+    date,
+    featuredimage
 }) => {
     const PostContent = contentComponent || Content;
+    const location = window.location.href.slice(0, -1);
 
     return (
-        <section className="section">
-            {helmet || ''}
-            <div className="container content">
-                <div className="columns">
-                    <div className="column is-10 is-offset-1">
-                        <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
-                            {title}
-                        </h1>
-                        <p>{description}</p>
-                        <PostContent content={content} />
-                        {tags && tags.length ? (
-                            <div style={{ marginTop: `4rem` }}>
-                                <h4>Tags</h4>
-                                <ul className="taglist">
+        <>
+            <PostHeader>
+                {helmet || ''}
+                <PageTitle>
+                    <h1 className="post-title">{title}</h1>
+                </PageTitle>
+                <p className="post-meta">
+                    {date}{' '}
+                    {`• 📚 Leitura de ${Math.round(readingTime.minutes)} min`}
+                </p>
+            </PostHeader>
+            <Img fluid={featuredimage.childImageSharp.fluid} />
+            <PostContainer>
+                <PostContent content={content} />
+                <>
+                    {tags && tags.length ? (
+                        <div>
+                            <Share link={location} text={title} />
+                            <div>
+                                <span>Tags: </span>
+                                <InlineList>
                                     {tags.map(tag => (
                                         <li key={tag + `tag`}>
                                             <Link
@@ -40,22 +67,14 @@ export const BlogPostTemplate = ({
                                             </Link>
                                         </li>
                                     ))}
-                                </ul>
+                                </InlineList>
                             </div>
-                        ) : null}
-                    </div>
-                </div>
-            </div>
-        </section>
+                        </div>
+                    ) : null}
+                </>
+            </PostContainer>
+        </>
     );
-};
-
-BlogPostTemplate.propTypes = {
-    content: PropTypes.node.isRequired,
-    contentComponent: PropTypes.func,
-    description: PropTypes.string,
-    title: PropTypes.string,
-    helmet: PropTypes.object
 };
 
 const BlogPost = ({ data }) => {
@@ -63,30 +82,28 @@ const BlogPost = ({ data }) => {
 
     return (
         <Layout>
-            <BlogPostTemplate
-                content={post.html}
-                contentComponent={HTMLContent}
-                description={post.frontmatter.description}
-                helmet={
-                    <Helmet titleTemplate="%s | Blog">
-                        <title>{`${post.frontmatter.title}`}</title>
-                        <meta
-                            name="description"
-                            content={`${post.frontmatter.description}`}
-                        />
-                    </Helmet>
-                }
-                tags={post.frontmatter.tags}
-                title={post.frontmatter.title}
-            />
+            <Container>
+                <BlogPostTemplate
+                    content={post.html}
+                    contentComponent={HTMLContent}
+                    helmet={
+                        <Helmet titleTemplate="%s | Blog">
+                            <title>{`${post.frontmatter.title}`}</title>
+                            <meta
+                                name="description"
+                                content={`${post.frontmatter.description}`}
+                            />
+                        </Helmet>
+                    }
+                    tags={post.frontmatter.tags}
+                    title={post.frontmatter.title}
+                    readingTime={post.fields.readingTime}
+                    date={post.frontmatter.date}
+                    featuredimage={post.frontmatter.featuredimage}
+                />
+            </Container>
         </Layout>
     );
-};
-
-BlogPost.propTypes = {
-    data: PropTypes.shape({
-        markdownRemark: PropTypes.object
-    })
 };
 
 export default BlogPost;
@@ -96,11 +113,23 @@ export const pageQuery = graphql`
         markdownRemark(id: { eq: $id }) {
             id
             html
+            fields {
+                readingTime {
+                    minutes
+                }
+            }
             frontmatter {
                 date(formatString: "MMMM DD, YYYY")
                 title
                 description
                 tags
+                featuredimage {
+                    childImageSharp {
+                        fluid(maxWidth: 1000, quality: 100) {
+                            ...GatsbyImageSharpFluid
+                        }
+                    }
+                }
             }
         }
     }

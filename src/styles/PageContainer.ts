@@ -27,18 +27,4 @@ export const PageContainer = styled.section`
     .featured-thumbnail {
         margin: 20px 0;
     }
-
-    .post-title {
-        font-size: 36px;
-        font-weight: ${fonts.weights.bold};
-
-        a {
-            color: ${colors.primaryBlue};
-
-            &:hover {
-                color: ${colors.secondaryBlue};
-                text-decoration: none;
-            }
-        }
-    }
 `
