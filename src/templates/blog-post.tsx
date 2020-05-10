@@ -23,7 +23,7 @@ interface BlogPostTemplate {
     featuredimage: any;
 }
 
-const BlogPostTemplate: React.FunctionComponent<BlogPostTemplate> = ({
+export const BlogPostTemplate: React.FunctionComponent<BlogPostTemplate> = ({
     content,
     contentComponent,
     tags,
