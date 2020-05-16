@@ -18,7 +18,7 @@ export const Profile: React.FunctionComponent<ProfileProps> = ({ image, social }
             {social.map(s => (
                 <li>
                     <a href={s.link}>
-                        <img alt={s.link} src={s.icon.publicURL} />
+                        <img alt={s.link} src={s?.icon?.publicURL} />
                     </a>
                 </li>
             ))}
