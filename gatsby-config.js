@@ -13,6 +13,8 @@ module.exports = {
         'gatsby-plugin-typescript',
         'gatsby-remark-reading-time',
         'gatsby-plugin-styled-components',
+        'gatsby-plugin-sharp',
+        'gatsby-transformer-sharp',
         {
             // keep as first gatsby-source-filesystem plugin for gatsby image support
             resolve: 'gatsby-source-filesystem',
@@ -51,12 +53,13 @@ module.exports = {
                 name: 'images'
             }
         },
-        'gatsby-plugin-sharp',
-        'gatsby-transformer-sharp',
         {
             resolve: 'gatsby-transformer-remark',
             options: {
                 plugins: [
+                    {
+                        resolve: 'gatsby-remark-vscode',
+                    },
                     {
                         resolve: 'gatsby-remark-relative-images',
                         options: {
