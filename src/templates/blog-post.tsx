@@ -11,6 +11,7 @@ import { PostHeader } from '../styles/PostHeader';
 import { PostContainer } from '../styles/PostContainer';
 import { InlineList } from '../styles/InlineList';
 import { Share } from '../components/Share';
+import { windowGlobal } from '../utils/window';
 
 interface BlogPostTemplate {
     content: ReactElement;
@@ -34,7 +35,7 @@ export const BlogPostTemplate: React.FunctionComponent<BlogPostTemplate> = ({
     featuredimage
 }) => {
     const PostContent = contentComponent || Content;
-    const location = window.location.href.slice(0, -1);
+    const location = windowGlobal?.location?.href?.slice(0, -1);
 
     return (
         <>
@@ -48,7 +49,7 @@ export const BlogPostTemplate: React.FunctionComponent<BlogPostTemplate> = ({
                     {`• 📚 Leitura de ${Math.round(readingTime.minutes)} min`}
                 </p>
             </PostHeader>
-            <Img fluid={featuredimage.childImageSharp.fluid} />
+            <Img fluid={featuredimage?.childImageSharp?.fluid} />
             <PostContainer>
                 <PostContent content={content} />
                 <>
