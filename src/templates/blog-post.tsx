@@ -46,7 +46,7 @@ export const BlogPostTemplate: React.FunctionComponent<BlogPostTemplate> = ({
                 </PageTitle>
                 <p className="post-meta">
                     {date}{' '}
-                    {`• 📚 Leitura de ${Math.round(readingTime.minutes)} min`}
+                    {`• 📚 Leitura de ${Math.round(readingTime?.minutes)} min`}
                 </p>
             </PostHeader>
             <Img fluid={featuredimage?.childImageSharp?.fluid} />
