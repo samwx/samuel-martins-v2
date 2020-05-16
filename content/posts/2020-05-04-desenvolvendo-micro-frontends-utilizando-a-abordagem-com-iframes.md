@@ -14,4 +14,27 @@ Donec vel elit turpis. Donec posuere massa quis risus volutpat, vitae condimentu
 
 Cras ac massa eros. Cras convallis interdum orci sed maximus. Sed dictum libero vel bibendum mattis. Cras ex eros, consequat at est vitae, laoreet convallis nisl. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla facilisi. Donec tellus urna, tincidunt id hendrerit eget, sagittis nec odio. Suspendisse malesuada nibh et nulla ultrices, ac iaculis sapien interdum.
 
-Suspendisse fermentum nulla eget neque tincidunt, ut pulvinar lacus tincidunt. Pellentesque condimentum, dolor eu pulvinar porttitor, justo velit ultricies ante, eget fringilla ex mauris porta lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam dolor dolor, viverra vitae sem at, dignissim luctus dolor. Integer dictum risus a nisl molestie mollis. Nulla facilisi. Nullam quis risus purus. Aenean maximus mauris et odio posuere, a viverra ligula dapibus. Pellentesque auctor porttitor vestibulum. Morbi et justo risus. Nullam dignissim congue mauris, ac tincidunt enim laoreet sed. Integer posuere sagittis leo non aliquam. Cras sit amet congue tortor, non aliquam eros. Fusce sed elit et ante laoreet posuere. Praesent in enim nibh.
+![](/img/image-2.png)
+
+Suspendisse fermentum nulla eget neque tincidunt, ut pulvinar lacus tincidunt. Pellentesque condimentum, dolor eu pulvinar porttitor, justo velit ultricies ante, eget fringilla ex mauris porta lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam dolor dolor, viverra vitae sem at, dignissim luctus dolor. Integer dictum risus a nisl molestie mollis. Nulla facilisi. Nullam quis risus purus. Aenean maximus mauris et odio posuere, a viverra ligula dapibus. Pellentesque auctor porttitor vestibulum. Morbi et justo risus.
+
+```
+export const Profile: React.FunctionComponent<ProfileProps> = ({ image, social }) => (
+    <PersonalProfile>
+        <figure>
+            <img src={image?.childImageSharp?.fluid?.src} alt="Samuel Martins" />
+        </figure>
+        <ul>
+            {social.map(s => (
+                <li>
+                    <a href={s.link}>
+                        <img alt={s.link} src={s.icon?.publicURL} />
+                    </a>
+                </li>
+            ))}
+        </ul>
+    </PersonalProfile>
+);
+```
+
+ Nullam dignissim congue mauris, ac tincidunt enim laoreet sed. Integer posuere sagittis leo non aliquam. Cras sit amet congue tortor, non aliquam eros. Fusce sed elit et ante laoreet posuere. Praesent in enim nibh.
