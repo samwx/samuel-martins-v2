@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config()
 
 const postQuery = `{
     posts: allMarkdownRemark(
@@ -21,21 +21,21 @@ const postQuery = `{
             }
         }
     }
-}`;
+}`
 
 const flatten = arr =>
-  arr.map(({ node: { frontmatter, ...rest } }) => ({
-    ...frontmatter,
-    ...rest,
-  }))
+    arr.map(({ node: { frontmatter, ...rest } }) => ({
+        ...frontmatter,
+        ...rest,
+    }))
 const settings = { attributesToSnippet: [`excerpt:20`] }
 const queries = [
-  {
-    query: postQuery,
-    transformer: ({ data }) => flatten(data.posts.edges),
-    indexName: process.env.GATSBY_ALGOLIA_INDEX_NAME,
-    settings,
-  },
+    {
+        query: postQuery,
+        transformer: ({ data }) => flatten(data.posts.edges),
+        indexName: process.env.GATSBY_ALGOLIA_INDEX_NAME,
+        settings,
+    },
 ]
 
-module.exports = queries;
+module.exports = queries
