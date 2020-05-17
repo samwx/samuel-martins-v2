@@ -1,12 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactElement } from 'react';
 import { graphql } from 'gatsby';
 import { Layout } from '../components/Layout';
 import Content, { HTMLContent } from '../components/Content';
 
-export const AboutPageTemplate = ({ title, content, contentComponent }) => {
-    const PageContent = contentComponent || Content;
+interface TalksPageTempalateProps {
+    title: string;
+    content: string;
+    contentComponent?: () => ReactElement;
+}
 
+export const TalksPageTemplate: React.FunctionComponent<TalksPageTempalateProps> = ({
+    title,
+    content,
+    contentComponent
+}) => {
+    const PageContent = contentComponent || Content;
     return (
         <section className="section section--gradient">
             <div className="container">
@@ -16,10 +24,7 @@ export const AboutPageTemplate = ({ title, content, contentComponent }) => {
                             <h2 className="title is-size-3 has-text-weight-bold is-bold-light">
                                 {title}
                             </h2>
-                            <PageContent
-                                className="content"
-                                content={content}
-                            />
+                            <PageContent content={content} />
                         </div>
                     </div>
                 </div>
@@ -28,18 +33,12 @@ export const AboutPageTemplate = ({ title, content, contentComponent }) => {
     );
 };
 
-AboutPageTemplate.propTypes = {
-    title: PropTypes.string.isRequired,
-    content: PropTypes.string,
-    contentComponent: PropTypes.func
-};
-
-const AboutPage = ({ data }) => {
+const TalksPage = ({ data }) => {
     const { markdownRemark: post } = data;
 
     return (
         <Layout>
-            <AboutPageTemplate
+            <TalksPageTemplate
                 contentComponent={HTMLContent}
                 title={post.frontmatter.title}
                 content={post.html}
@@ -48,14 +47,10 @@ const AboutPage = ({ data }) => {
     );
 };
 
-AboutPage.propTypes = {
-    data: PropTypes.object.isRequired
-};
+export default TalksPage;
 
-export default AboutPage;
-
-export const aboutPageQuery = graphql`
-    query AboutPage($id: String!) {
+export const talksPageQuery = graphql`
+    query TalksPage($id: String!) {
         markdownRemark(id: { eq: $id }) {
             html
             frontmatter {

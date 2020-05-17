@@ -60,15 +60,30 @@ collections:
                         { label: Icon, name: icon, widget: image }
                     ]
                   }
-          - file: src/pages/about2/index.md
-            label: About
-            name: about
+          - file: src/pages/talks/index.md
+            label: Talks
+            name: talks
             fields:
                 - {
                       label: Template Key,
                       name: templateKey,
                       widget: hidden,
-                      default: about2-page,
+                      default: talks-page,
                   }
                 - { label: Title, name: title, widget: string }
-                - { label: Body, name: body, widget: markdown }
+                - {
+                    label: Talks,
+                    name: talks-list,
+                    widget: list,
+                    fields: [
+                        {
+                            label: Title, name: talk-title, widget: string
+                        },
+                        {
+                            label: Description, name: talk-description, widget: markdown
+                        },
+                        {
+                            label: Link, name: talk-link, widget: string
+                        }
+                    ]
+                }
