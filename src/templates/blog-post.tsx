@@ -12,6 +12,7 @@ import { PostContainer } from '../styles/PostContainer';
 import { InlineList } from '../styles/InlineList';
 import { Share } from '../components/Share';
 import { windowGlobal } from '../utils/window';
+import { Disqus } from 'gatsby-plugin-disqus';
 
 interface BlogPostTemplate {
     content: ReactElement;
@@ -22,6 +23,7 @@ interface BlogPostTemplate {
     readingTime: { minutes: number };
     date: string;
     featuredimage: any;
+    postId: number;
 }
 
 export const BlogPostTemplate: React.FunctionComponent<BlogPostTemplate> = ({
@@ -32,10 +34,15 @@ export const BlogPostTemplate: React.FunctionComponent<BlogPostTemplate> = ({
     helmet,
     readingTime,
     date,
-    featuredimage
+    featuredimage,
+    postId
 }) => {
     const PostContent = contentComponent || Content;
     const location = windowGlobal?.location?.href?.slice(0, -1);
+    const disqusConfig = {
+        identifier: postId,
+        title,
+    };
 
     return (
         <>
@@ -52,28 +59,25 @@ export const BlogPostTemplate: React.FunctionComponent<BlogPostTemplate> = ({
             <Img fluid={featuredimage?.childImageSharp?.fluid} />
             <PostContainer>
                 <PostContent content={content} />
-                <>
-                    {tags && tags.length ? (
+                {tags && tags.length ? (
+                    <>
+                        <Share link={location} text={title} />
                         <div>
-                            <Share link={location} text={title} />
-                            <div>
-                                <span>Tags: </span>
-                                <InlineList>
-                                    {tags.map(tag => (
-                                        <li key={tag + `tag`}>
-                                            <Link
-                                                to={`/tags/${kebabCase(tag)}/`}
-                                            >
-                                                {tag}
-                                            </Link>
-                                        </li>
-                                    ))}
-                                </InlineList>
-                            </div>
+                            <span>Tags: </span>
+                            <InlineList>
+                                {tags.map(tag => (
+                                    <li key={tag + `tag`}>
+                                        <Link to={`/tags/${kebabCase(tag)}/`}>
+                                            {tag}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </InlineList>
                         </div>
-                    ) : null}
-                </>
+                    </>
+                ) : null}
             </PostContainer>
+            <Disqus config={disqusConfig} />
         </>
     );
 };
@@ -101,6 +105,7 @@ const BlogPost = ({ data }) => {
                     readingTime={post.fields.readingTime}
                     date={post.frontmatter.date}
                     featuredimage={post.frontmatter.featuredimage}
+                    postId={post.id}
                 />
             </Container>
         </Layout>

@@ -4,6 +4,7 @@ require('dotenv').config();
 module.exports = {
     siteMetadata: {
         title: 'Samuel Martins',
+        keywords: ['Software Engineer', 'Front-end architecture'],
         description:
             'Site pessoal com conteúdos sobre desenvolvimento web, arquitetura e linguagens de programação'
     },
@@ -24,7 +25,13 @@ module.exports = {
             }
         },
         {
-            resolve: `gatsby-plugin-algolia`,
+            resolve: 'gatsby-plugin-disqus',
+            options: {
+                shortname: 'samuelmartins'
+            }
+        },
+        {
+            resolve: 'gatsby-plugin-algolia',
             options: {
                 appId: process.env.GATSBY_ALGOLIA_APP_ID,
                 apiKey: process.env.ALGOLIA_ADMIN_KEY,
@@ -58,7 +65,7 @@ module.exports = {
             options: {
                 plugins: [
                     {
-                        resolve: 'gatsby-remark-vscode',
+                        resolve: 'gatsby-remark-vscode'
                     },
                     {
                         resolve: 'gatsby-remark-relative-images',
