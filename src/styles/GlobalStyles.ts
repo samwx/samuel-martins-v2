@@ -11,7 +11,7 @@ export const GlobalStyles = createGlobalStyle`
         background: ${colors.darkenWhite};
         color: ${colors.primaryGray};
         font-family: ${fonts.family.primary};
-        font-weigth: ${fonts.weights.regular};
+        font-weight: ${fonts.weights.regular};
     }
 
     a {
