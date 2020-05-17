@@ -11,6 +11,6 @@ interface TalksPagePreviewProps {
 export const TalksPagePreview: React.FunctionComponent<TalksPagePreviewProps> = ({ entry, widgetFor }) => (
     <TalksPageTemplate
         title={entry.getIn(['data', 'title'])}
-        content={widgetFor('body')}
+        talksList={widgetFor('talksList')}
     />
 )

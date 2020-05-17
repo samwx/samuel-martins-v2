@@ -1,36 +1,31 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import { graphql } from 'gatsby';
 import { Layout } from '../components/Layout';
-import Content, { HTMLContent } from '../components/Content';
+import { GenericContentList } from '../components/GenericContentList';
 
-interface TalksPageTempalateProps {
+interface TalksPageTemplateProps {
     title: string;
-    content: string;
-    contentComponent?: () => ReactElement;
+    talksList: Array<{
+        talkTitle: string;
+        talkDescription: string;
+        talkLink: string;
+    }>;
 }
 
-export const TalksPageTemplate: React.FunctionComponent<TalksPageTempalateProps> = ({
+export const TalksPageTemplate: React.FunctionComponent<TalksPageTemplateProps> = ({
     title,
-    content,
-    contentComponent
+    talksList
 }) => {
-    const PageContent = contentComponent || Content;
-    return (
-        <section className="section section--gradient">
-            <div className="container">
-                <div className="columns">
-                    <div className="column is-10 is-offset-1">
-                        <div className="section">
-                            <h2 className="title is-size-3 has-text-weight-bold is-bold-light">
-                                {title}
-                            </h2>
-                            <PageContent content={content} />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    const genericList = talksList.reduce(
+        (xs, x) =>
+            xs.concat({
+                itemTitle: x.talkTitle,
+                itemDescription: x.talkDescription,
+                itemLink: x.talkLink
+            }),
+        []
     );
+    return <GenericContentList pageTitle={title} list={genericList} />;
 };
 
 const TalksPage = ({ data }) => {
@@ -39,9 +34,8 @@ const TalksPage = ({ data }) => {
     return (
         <Layout>
             <TalksPageTemplate
-                contentComponent={HTMLContent}
                 title={post.frontmatter.title}
-                content={post.html}
+                talksList={post.frontmatter.talksList}
             />
         </Layout>
     );
@@ -55,6 +49,11 @@ export const talksPageQuery = graphql`
             html
             frontmatter {
                 title
+                talksList {
+                    talkTitle
+                    talkDescription
+                    talkLink
+                }
             }
         }
     }

@@ -73,17 +73,44 @@ collections:
                 - { label: Title, name: title, widget: string }
                 - {
                     label: Talks,
-                    name: talks-list,
+                    name: talksList,
                     widget: list,
                     fields: [
                         {
-                            label: Title, name: talk-title, widget: string
+                            label: Title, name: talkTitle, widget: string
                         },
                         {
-                            label: Description, name: talk-description, widget: markdown
+                            label: Description, name: talkDescription, widget: markdown
                         },
                         {
-                            label: Link, name: talk-link, widget: string
+                            label: Link, name: talkLink, widget: string
+                        }
+                    ]
+                }
+          - file: src/pages/artigos/index.md
+            label: Articles
+            name: articles
+            fields:
+                - {
+                        label: Template Key,
+                        name: templateKey,
+                        widget: hidden,
+                        default: talks-page,
+                  }
+                - { label: Title, name: title, widget: string }
+                - {
+                    label: Articles,
+                    name: articlesList,
+                    widget: list,
+                    fields: [
+                        {
+                            label: Title, name: articleTitle, widget: string
+                        },
+                        {
+                            label: Description, name: articleDescription, widget: markdown
+                        },
+                        {
+                            label: Link, name: articleLink, widget: string
                         }
                     ]
                 }
