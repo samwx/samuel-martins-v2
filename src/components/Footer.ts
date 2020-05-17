@@ -6,5 +6,5 @@ export const Footer = styled.footer`
     font-size: 14px;
     font-style: italic;
     text-align: center;
-    margin-bottom: 20px;
+    margin: 20px 0;
 `;
