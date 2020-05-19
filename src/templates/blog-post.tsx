@@ -15,7 +15,7 @@ import { windowGlobal } from '../utils/window';
 import { Disqus } from 'gatsby-plugin-disqus';
 import { Comments } from '../styles/Comments';
 
-interface BlogPostTemplate {
+interface BlogPostTemplateProps {
     content: ReactElement;
     contentComponent: () => ReactElement;
     title: string;
@@ -24,10 +24,12 @@ interface BlogPostTemplate {
     readingTime: { minutes: number };
     date: string;
     featuredimage: any;
+    featuredimageauthor: string;
+    featuredimagelink: string;
     postId: number;
 }
 
-export const BlogPostTemplate: React.FunctionComponent<BlogPostTemplate> = ({
+export const BlogPostTemplate: React.FunctionComponent<BlogPostTemplateProps> = ({
     content,
     contentComponent,
     tags,
@@ -36,6 +38,8 @@ export const BlogPostTemplate: React.FunctionComponent<BlogPostTemplate> = ({
     readingTime,
     date,
     featuredimage,
+    featuredimageauthor,
+    featuredimagelink,
     postId
 }) => {
     const PostContent = contentComponent || Content;
@@ -57,7 +61,10 @@ export const BlogPostTemplate: React.FunctionComponent<BlogPostTemplate> = ({
                     {`• 📚 Leitura de ${Math.round(readingTime?.minutes)} min`}
                 </p>
             </PostHeader>
-            <Img fluid={featuredimage?.childImageSharp?.fluid} />
+            <figure className="tc">
+                <Img fluid={featuredimage?.childImageSharp?.fluid} />
+                {featuredimageauthor && <p>Foto por: <a href={featuredimagelink} target="_blank">{featuredimageauthor}</a></p>}
+            </figure>
             <PostContainer>
                 <PostContent content={content} />
                 {tags && tags.length ? (
@@ -108,6 +115,8 @@ const BlogPost = ({ data }) => {
                     readingTime={post.fields.readingTime}
                     date={post.frontmatter.date}
                     featuredimage={post.frontmatter.featuredimage}
+                    featuredimageauthor={post.frontmatter.featuredimageauthor}
+                    featuredimagelink={post.frontmatter.featuredimagelink}
                     postId={post.id}
                 />
             </Container>
@@ -139,6 +148,8 @@ export const pageQuery = graphql`
                         }
                     }
                 }
+                featuredimageauthor
+                featuredimagelink
             }
         }
     }
