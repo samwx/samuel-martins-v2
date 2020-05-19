@@ -11,6 +11,12 @@ export const PersonalDescription = styled.div`
         text-align: center;
     }
 
+    @media ${device.large} {
+        width: 100%;
+        padding: 0 30px;
+        text-align: center;
+    }
+
     h1 {
         font-size: 72px;
         font-family: ${fonts.family.secondary};

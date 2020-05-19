@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { colors } from "./variables/colors";
-import { device } from "./variables/device";
+import styled from 'styled-components';
+import { colors } from './variables/colors';
+import { device } from './variables/device';
 
 const HeaderBg = require('../../static/img/header-bg-rectangle.png');
 export const Header = styled.header`
@@ -13,8 +13,16 @@ export const Header = styled.header`
         background: ${colors.primaryBlue};
     }
 
+    @media ${device.large} {
+        background: ${colors.primaryBlue};
+    }
+
     .intro-container {
         @media ${device.small} {
+            flex-wrap: wrap;
+        }
+
+        @media ${device.large} {
             flex-wrap: wrap;
         }
 
@@ -30,6 +38,10 @@ export const Header = styled.header`
             @media ${device.small} {
                 width: 100%;
             }
+
+            @media ${device.large} {
+                width: 100%;
+            }
         }
     }
-`
+`;

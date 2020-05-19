@@ -15,7 +15,7 @@ export const Container = styled.div<{ display?: string }>`
     }
 
     @media ${device.large} {
-        width: 900px;
+        width: 720px;
     }
 
 `;
