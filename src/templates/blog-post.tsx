@@ -13,6 +13,7 @@ import { InlineList } from '../styles/InlineList';
 import { Share } from '../components/Share';
 import { windowGlobal } from '../utils/window';
 import { Disqus } from 'gatsby-plugin-disqus';
+import { Comments } from '../styles/Comments';
 
 interface BlogPostTemplate {
     content: ReactElement;
@@ -77,7 +78,9 @@ export const BlogPostTemplate: React.FunctionComponent<BlogPostTemplate> = ({
                     </>
                 ) : null}
             </PostContainer>
-            <Disqus config={disqusConfig} />
+            <Comments>
+                <Disqus config={disqusConfig} />
+            </Comments>
         </>
     );
 };

@@ -26,7 +26,7 @@ export const CommonHeader = () => (
         query={pageQuery}
         render={data => (
             <MainNavigation>
-                <Container display="flex">
+                <Container>
                     <figure>
                         <Link to="/">
                             <img

@@ -12,6 +12,8 @@ export const HomeBoxes = styled.div`
 
     @media ${device.small} {
         flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
 
         ${ColoredBox} {
             margin-bottom: 40px;

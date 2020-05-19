@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { colors } from './variables/colors';
 import { fonts } from './variables/fonts';
+import { device } from './variables/device';
 
 export const PostContainer = styled.section`
     background: ${colors.white};
@@ -12,6 +13,10 @@ export const PostContainer = styled.section`
     font-size: 16px;
     line-height: 30px;
     margin-bottom: 40px;
+
+    @media ${device.small} {
+        padding: 60px 30px;
+    }
 
     p:not(:first-child) {
         margin: 25px 0;

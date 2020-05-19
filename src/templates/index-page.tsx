@@ -52,11 +52,11 @@ export const IndexPageTemplate: React.FunctionComponent<IndexPageTemplateProps> 
                 </HomeNavigation>
 
                 <div className="flex items-center intro-container">
-                    <div className="w-30">
+                    <div className="home-profile">
                         <Profile image={image} social={social} />
                     </div>
 
-                    <PersonalDescription className="w-70">
+                    <PersonalDescription>
                         <h1>{title}</h1>
                         <p>{description}</p>
                     </PersonalDescription>

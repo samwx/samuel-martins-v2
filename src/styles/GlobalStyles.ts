@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import { colors } from './variables/colors';
 import { fonts } from './variables/fonts';
+import { device } from './variables/device';
 
 export const GlobalStyles = createGlobalStyle`
     :root {
@@ -30,5 +31,9 @@ export const GlobalStyles = createGlobalStyle`
 
     .grvsc-container {
         margin: 0 -60px;
+
+        @media ${device.small} {
+            margin: 0 -30px;
+        }
     }
 `;

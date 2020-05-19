@@ -17,5 +17,19 @@ export const Header = styled.header`
         @media ${device.small} {
             flex-wrap: wrap;
         }
+
+        .home-profile {
+            width: 30%;
+
+            figure {
+                img {
+                    width: 150px;
+                }
+            }
+
+            @media ${device.small} {
+                width: 100%;
+            }
+        }
     }
 `

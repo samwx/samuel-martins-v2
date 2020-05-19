@@ -6,6 +6,10 @@ import { fonts } from './variables/fonts';
 export const HomeNavigation = styled(InlineMenu)`
     margin-bottom: 40px;
 
+    ul {
+        padding-left: 0;
+    }
+
     a {
         color: ${colors.white};
         font-family: ${fonts.family.secondary};
