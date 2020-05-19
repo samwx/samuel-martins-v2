@@ -52,5 +52,9 @@ export const MainNavigation = styled.nav`
             background: ${colors.secondaryBlue};
             text-decoration: none;
         }
+
+        &.navbar-item-active {
+            background: ${colors.secondaryBlue};
+        }
     }
-`
+`;

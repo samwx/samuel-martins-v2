@@ -1,50 +1,60 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 import { Layout } from '../components/Layout';
+import { PageContainer } from '../styles/PageContainer';
+import { PageHeader } from '../styles/PageHeader';
+import { Container } from '../styles/Container';
+import { PostItem } from '../components/PostItem';
 
-class TagRoute extends React.Component {
-    render() {
-        const posts = this.props.data.allMarkdownRemark.edges;
-        const postLinks = posts.map(post => (
-            <li key={post.node.fields.slug}>
-                <Link to={post.node.fields.slug}>
-                    <h2 className="is-size-2">{post.node.frontmatter.title}</h2>
-                </Link>
-            </li>
-        ));
-        const tag = this.props.pageContext.tag;
-        const title = this.props.data.site.siteMetadata.title;
-        const totalCount = this.props.data.allMarkdownRemark.totalCount;
-        const tagHeader = `${totalCount} post${
-            totalCount === 1 ? '' : 's'
-        } tagged with “${tag}”`;
+interface TagRouteProps {
+    data: {
+        allMarkdownRemark: {
+            edges: Array<any>,
+            totalCount: number,
+        },
+        site: {
+            siteMetadata: {
+                title: string;
+            }
+        }
+    };
 
-        return (
-            <Layout>
-                <section className="section">
-                    <Helmet title={`${tag} | ${title}`} />
-                    <div className="container content">
-                        <div className="columns">
-                            <div
-                                className="column is-10 is-offset-1"
-                                style={{ marginBottom: '6rem' }}
-                            >
-                                <h3 className="title is-size-4 is-bold-light">
-                                    {tagHeader}
-                                </h3>
-                                <ul className="taglist">{postLinks}</ul>
-                                <p>
-                                    <Link to="/tags/">Browse all tags</Link>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </Layout>
-        );
-    }
+    pageContext: {
+        tag: string;
+    };
 }
+
+const TagRoute: React.FunctionComponent<TagRouteProps> = (props) => {
+    const posts = props.data.allMarkdownRemark.edges;
+    const tag = props.pageContext.tag;
+    const title = props.data.site.siteMetadata.title;
+    const totalCount = props.data.allMarkdownRemark.totalCount;
+    const tagHeader = `${totalCount} post${
+        totalCount === 1 ? '' : 's'
+    } encontrados em “${tag}”`;
+
+    return (
+        <Layout>
+            <Helmet title={`${tag} | ${title}`} />
+            <PageHeader>
+                <h4>{tagHeader}</h4>
+            </PageHeader>
+            <Container>
+                <PageContainer>
+                    {posts?.map(({ node: post }) => (
+                        <PostItem
+                            key={post.id}
+                            post={post}
+                            showImage={true}
+                            showReadTime={true}
+                        />
+                    ))}
+                </PageContainer>
+            </Container>
+        </Layout>
+    );
+};
 
 export default TagRoute;
 
@@ -65,9 +75,22 @@ export const tagPageQuery = graphql`
                 node {
                     fields {
                         slug
+                        readingTime {
+                            minutes
+                        }
                     }
                     frontmatter {
+                        date(formatString: "MMMM DD, YYYY")
                         title
+                        description
+                        tags
+                        featuredimage {
+                            childImageSharp {
+                                fluid(maxWidth: 1000, quality: 100) {
+                                    ...GatsbyImageSharpFluid
+                                }
+                            }
+                        }
                     }
                 }
             }
