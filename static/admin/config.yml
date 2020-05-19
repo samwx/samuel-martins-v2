@@ -29,7 +29,6 @@ collections:
           - { label: 'Title', name: 'title', widget: 'string' }
           - { label: 'Publish Date', name: 'date', widget: 'datetime' }
           - { label: 'Description', name: 'description', widget: 'text' }
-          - { label: 'Featured Post', name: 'featuredpost', widget: 'boolean', required: false }
           - { label: 'Featured Image', name: 'featuredimage', widget: image, required: false }
           - { label: 'Featured image author', name: 'featuredimageauthor', widget: string, required: false }
           - { label: 'Featured image link', name: 'featuredimagelink', widget: string, required: false }

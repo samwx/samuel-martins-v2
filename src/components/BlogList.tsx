@@ -42,7 +42,6 @@ export const BlogList: React.FunctionComponent<{}> = () => (
                                 title
                                 templateKey
                                 date(formatString: "MMMM DD, YYYY")
-                                featuredpost
                                 description
                                 featuredimage {
                                     childImageSharp {
