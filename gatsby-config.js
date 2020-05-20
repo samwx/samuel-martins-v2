@@ -40,6 +40,12 @@ module.exports = {
             }
         },
         {
+            resolve: `gatsby-plugin-google-analytics`,
+            options: {
+                trakingId: 'UA-7911480-8',
+            }
+        },
+        {
             resolve: 'gatsby-source-filesystem',
             options: {
                 path: `${__dirname}/src/pages`,
