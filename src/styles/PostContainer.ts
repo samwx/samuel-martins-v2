@@ -6,13 +6,20 @@ import { device } from './variables/device';
 export const PostContainer = styled.section`
     background: ${colors.white};
     color: ${colors.primaryGray};
-    padding: 60px;
+    padding: 40px 60px;
     border-radius: 10px;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
     font-size: 16px;
     line-height: 30px;
     margin-bottom: 40px;
+
+    .image-author-credits {
+        text-align: center;
+        margin-top: -30px;
+        font-size: 12px;
+        font-style: italic;
+    }
 
     @media ${device.small} {
         padding: 60px 30px;

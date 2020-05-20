@@ -23,12 +23,7 @@ export const PostItem: React.FunctionComponent<PostItemProps> = ({
         <header>
             <PageTitle>
                 <h3 className="post-title">
-                    <Link
-                        className="title has-text-primary is-size-4"
-                        to={post.fields.slug}
-                    >
-                        {post.frontmatter.title}
-                    </Link>
+                    <Link to={post.fields.slug}>{post.frontmatter.title}</Link>
                 </h3>
             </PageTitle>
             {showImage && post.frontmatter.featuredimage ? (
@@ -52,5 +47,6 @@ export const PostItem: React.FunctionComponent<PostItemProps> = ({
             </p>
         </header>
         <p className="post-item-description">{post.frontmatter.description}</p>
+        <Link className="read-more-link" to={post.fields.slug}>Leia mais →</Link>
     </PostListItem>
 );

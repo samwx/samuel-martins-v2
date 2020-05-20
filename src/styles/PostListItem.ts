@@ -13,7 +13,7 @@ export const PostListItem = styled.article`
     .post-item-description {
         font-style: italic;
         color: ${colors.lightGray};
-        font-size: 14px;
+        font-size: 16px;
     }
 
     header {
@@ -29,5 +29,11 @@ export const PostListItem = styled.article`
                 }
             }
         }
+    }
+
+    .read-more-link {
+        font-weight: ${fonts.weights.bold};
+        margin-top: 20px;
+        display: inline-block;
     }
 `;

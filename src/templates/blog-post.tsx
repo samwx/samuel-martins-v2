@@ -61,11 +61,9 @@ export const BlogPostTemplate: React.FunctionComponent<BlogPostTemplateProps> = 
                     {`• 📚 Leitura de ${Math.round(readingTime?.minutes)} min`}
                 </p>
             </PostHeader>
-            <figure className="tc">
-                <Img fluid={featuredimage?.childImageSharp?.fluid} />
-                {featuredimageauthor && <p>Foto por: <a href={featuredimagelink} target="_blank">{featuredimageauthor}</a></p>}
-            </figure>
+            <Img fluid={featuredimage?.childImageSharp?.fluid} />
             <PostContainer>
+                {featuredimageauthor && <p className="image-author-credits">Foto por: <a href={featuredimagelink} target="_blank">{featuredimageauthor}</a></p>}
                 <PostContent content={content} />
                 {tags && tags.length ? (
                     <>

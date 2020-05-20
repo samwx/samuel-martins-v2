@@ -65,7 +65,7 @@ export const MainNavigation = styled.nav`
 
         @media ${device.small} {
             padding-left: 0;
-            margin-top: 30px;
+            margin-top: 30px !important;
         }
     }
 
