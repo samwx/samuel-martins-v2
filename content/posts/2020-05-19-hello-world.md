@@ -2,14 +2,11 @@
 templateKey: blog-post
 title: Hello world!
 date: 2020-05-19T02:12:00.343Z
-description: "Já há um bom tempo que eu planejo voltar a ter um blog onde
-  pudesse compartilhar um pouco das minhas experiências com desenvolvimento de
-  software - especialmente sobre universo de front-end - mas sempre me apareciam
-  outras prioridades que me faziam procrastinar esse projeto. Nessa quarentena
-  forçada por conta da pandemia do coronavírus, decidi ocupar a mente com coisas
-  que me pudessem acrescentar algo e, por que não, ajudar outras pessoas. E será
-  exatamente esse o intuito aqui: compartilhar conhecimento e algumas
-  experiências que tive como desenvolvedor de software."
+description: Já há um bom tempo que eu planejo voltar a ter um blog onde pudesse
+  compartilhar um pouco das minhas experiências com desenvolvimento de software
+  - especialmente sobre universo de front-end - mas sempre me apareciam outras
+  prioridades que me faziam procrastinar esse projeto. Bora compartilhar
+  bastante coisa legal!
 featuredimage: /img/allie-i3nd16f56ko-unsplash.jpg
 featuredimageauthor: Allie
 featuredimagelink: https://unsplash.com/photos/I3nD16F56Ko
