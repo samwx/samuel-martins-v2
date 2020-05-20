@@ -10,9 +10,9 @@ description: "Já há um bom tempo que eu planejo voltar a ter um blog onde
   que me pudessem acrescentar algo e, por que não, ajudar outras pessoas. E será
   exatamente esse o intuito aqui: compartilhar conhecimento e algumas
   experiências que tive como desenvolvedor de software."
-featuredimage: /img/allie-pwc1wnurzl8-unsplash.jpg
+featuredimage: /img/allie-i3nd16f56ko-unsplash.jpg
 featuredimageauthor: Allie
-featuredimagelink: https://unsplash.com/photos/Pwc1wNurzl8
+featuredimagelink: https://unsplash.com/photos/I3nD16F56Ko
 tags:
   - off topic
 ---
