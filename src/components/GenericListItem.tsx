@@ -1,6 +1,15 @@
 import React from 'react';
 import { GenericListItemContent } from '../styles/GenericListItemContent';
+import { HTMLContent } from '../components/Content';
+import remark from 'remark';
 
+const remarkHTML = require('remark-html');
+
+const toHTML = value =>
+    remark()
+        .use(remarkHTML)
+        .processSync(value)
+        .toString();
 export interface GenericListItemProps {
     itemTitle: string;
     itemDescription: string;
@@ -14,7 +23,11 @@ export const GenericListItem: React.FunctionComponent<GenericListItemProps> = ({
 }) => (
     <GenericListItemContent>
         <h2>{itemTitle}</h2>
-        <div className="generic-item-description">{itemDescription}</div>
-        <a href={itemLink} className="generic-item-link" target="_blank">Ver apresentação →</a>
+        <div className="generic-item-description">
+            <HTMLContent content={toHTML(itemDescription)} />
+        </div>
+        <a href={itemLink} className="generic-item-link" target="_blank">
+            Ver apresentação →
+        </a>
     </GenericListItemContent>
 );
