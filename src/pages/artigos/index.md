@@ -1,7 +1,14 @@
 ---
-templateKey: 'articles-page'
+templateKey: articles-page
 title: Artigos
 articlesList:
+  - articleTitle: Comparação entre arquitetura de nanoserviços e microserviços
+    articleDescription: >
+      Trabalho de conclusão de curso da pós graduação de Arquitetura de Software
+      Distribuído pela PUC Minas. Neste trabalho tento comparar duas abordagens
+      arquiteturais distintas, uma utilizando nano serviços construídos em
+      funções serverless e outra com a abordagem de microserviços.
+    articleLink: https://speakerdeck.com/samwx/comparativo-entre-arquitetura-de-microsservicos-e-nanosservicos
   - articleTitle: "Performance no front-end: 3 critérios + técnicas para sua
       aplicação web voar"
     articleDescription: Artigo escrito para o [blog da
