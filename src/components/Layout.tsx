@@ -48,6 +48,7 @@ export const Layout: React.FunctionComponent<{
 
                 <meta name="theme-color" content={colors.primaryBlue} />
 
+                <script data-ad-client="ca-pub-4003392090629406" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <meta property="og:type" content="business.business" />
                 <meta property="og:title" content={title} />
                 <meta property="og:url" content="/" />
