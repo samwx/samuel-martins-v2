@@ -45,7 +45,7 @@ export const BlogList: React.FunctionComponent<{}> = () => (
                                 description
                                 featuredimage {
                                     childImageSharp {
-                                        fluid(maxWidth: 120, quality: 90) {
+                                        fluid(maxWidth: 900, quality: 90) {
                                             ...GatsbyImageSharpFluid
                                         }
                                     }
