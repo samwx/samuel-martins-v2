@@ -2,6 +2,11 @@
 templateKey: articles-page
 title: Artigos
 articlesList:
+  - articleTitle: Evoluindo suas aplicações utilizando micro frontends
+    articleLink: https://speakerdeck.com/samwx/evoluindo-suas-aplicacoes-utilizando-micro-frontends
+    articleDescription: Palestra ministrada no TDC 2019 onde conto um pouco da minha
+      experiência na adoção de uma arquitetura muito promissora para o futuro
+      das aplicações web.
   - articleTitle: Comparação entre arquitetura de nanoserviços e microserviços
     articleDescription: >
       Trabalho de conclusão de curso da pós graduação de Arquitetura de Software
