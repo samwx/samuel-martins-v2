@@ -17,6 +17,8 @@ tags:
 ---
 Conforme as aplicações frontend foram tomando forma e evoluindo para uma escala cada vez maior, aquela ideia de ter um único repositório que concentra todo o código relacionado ao nosso projeto foi dando espaço a uma outra abordagem, similar ao que já conhecemos nos micro serviços, os chamados micro frontends. Nesse post vou explicar um pouco desse conceito e como implementar essa arquitetura utilizando iframes (não torça o nariz antes de ler todo o conteúdo 😅).
 
+
+
 ## TL;DR
 
 * Solução final no meu github: <https://github.com/samwx/microfront-with-iframes>;
@@ -56,7 +58,7 @@ Os **micro frontends** são as partes que foram separadas da nossa aplicação s
 
 Preparei uma solução de exemplo que [pode ser encontrada no meu github](https://github.com/samwx/microfront-with-iframes). Para facilitar, fiz a divisão dos micro frontends em pastas, chamadas de "fragments". A ideia permanece a mesma pois apesar de estar no mesmo repositório irão rodar separadamente. No código da nossa aplicação satélite, vamos ter uma ideia bem simples para demonstrar o conceito e que contém alguns serviços, controllers e dados que podem ser compartilhados.
 
-***satellite/webpack.config.js:*** neste arquivo apenas uma configuração de porta e o plugin html-webpack-plugin para nos auxiliar com os testes em tempo de desenvolvimento
+**satellite/webpack.config.js*:*** neste arquivo apenas uma configuração de porta e o plugin html-webpack-plugin para nos auxiliar com os testes em tempo de desenvolvimento
 
 ```jsx
 const path = require('path');
@@ -78,7 +80,7 @@ module.exports = {
 };
 ```
 
-***satellite/index.js***: aqui começam as mágicas. Para orquestrar a comunicação entre as aplicações, iremos utilizar um pacote do npm chamado [iframe-message-proxy](https://github.com/takenet/iframe-message-proxy). Desenvolvi esse projeto na [Take](https://www.take.net/) em conjunto com o restante do time para conseguir enviar postMessages de dentro do iframe de forma com que fosse possível esperar por uma resposta por meio de Promises. A ideia surgiu de um pacote muito similar desenvolvido pela Microsoft, também [disponível aqui](https://github.com/microsoft/window-post-message-proxy).
+**satellite/index.js**: aqui começam as mágicas. Para orquestrar a comunicação entre as aplicações, iremos utilizar um pacote do npm chamado [iframe-message-proxy](https://github.com/takenet/iframe-message-proxy). Desenvolvi esse projeto na [Take](https://www.take.net/) em conjunto com o restante do time para conseguir enviar postMessages de dentro do iframe de forma com que fosse possível esperar por uma resposta por meio de Promises. A ideia surgiu de um pacote muito similar desenvolvido pela Microsoft, também [disponível aqui](https://github.com/microsoft/window-post-message-proxy).
 
 ```jsx
 import { IframeMessageProxy } from 'iframe-message-proxy';
@@ -89,7 +91,7 @@ IframeMessageProxy.listen();
 window.addEventListener('message', handleEvent);
 ```
 
-***satellite/eventReceivers.js***: aqui iremos tratar os eventos recebidos e encaminhar para os devidos serviços dentro da aplicação satellite para que ela possa tratar a mensagem e devolver uma resposta para o iframe que a chamou:
+**satellite/eventReceivers.js**: aqui iremos tratar os eventos recebidos e encaminhar para os devidos serviços dentro da aplicação satellite para que ela possa tratar a mensagem e devolver uma resposta para o iframe que a chamou:
 
 ```jsx
 import { getUsers } from './services/service1';
@@ -126,7 +128,7 @@ export const handleEvent = (fragmentEvent) => {
 
 Perceba que temos basicamente um switch/case para identificar os eventos. Entretanto quis criar um prefixo pré-definido para evitar que a nossa aplicação fique tentando lidar com eventos que não surgem dos nossos próprios micro frontents.
 
-***satellite/services/service1.js:*** aqui iremos simplesmente identificar o **source** - qual fragmento nos mandou a mensagem - e devolver uma resposta, que nesse exemplo nada mais é do que um objeto contendo alguns dados:
+**satellite/services/service1.js*:*** aqui iremos simplesmente identificar o **source** - qual fragmento nos mandou a mensagem - e devolver uma resposta, que nesse exemplo nada mais é do que um objeto contendo alguns dados:
 
 ```jsx
 export const getUsers = ({ source, trackingProperties }) => {
@@ -142,9 +144,9 @@ export const getUsers = ({ source, trackingProperties }) => {
 };
 ```
 
-O ***trackingProperties*** é um objeto que contém um ***id*** que identifica a mensagem recebida. O fragmento que enviou essa mensagem está esperando por uma resposta, e para conseguirmos identificar para onde iremos enviá-la, precisamos identificar nossa mensagem de alguma forma, similar ao que os correios fazem via CEP ;).
+O **trackingProperties** é um objeto que contém um **id** que identifica a mensagem recebida. O fragmento que enviou essa mensagem está esperando por uma resposta, e para conseguirmos identificar para onde iremos enviá-la, precisamos identificar nossa mensagem de alguma forma, similar ao que os correios fazem via CEP ;).
 
-***satellite/index.html***: para finalizar o código da aplicação satellite iremos adicionar um html básico que irá chamar os outros micro frontends. Note que apesar de estarem na mesma pasta, estão em domínios diferentes o que nos possibilita hospedá-los onde bem entendermos:
+**satellite/index.html**: para finalizar o código da aplicação satellite iremos adicionar um html básico que irá chamar os outros micro frontends. Note que apesar de estarem na mesma pasta, estão em domínios diferentes o que nos possibilita hospedá-los onde bem entendermos:
 
 ```html
 <!DOCTYPE html>
@@ -170,7 +172,7 @@ O ***trackingProperties*** é um objeto que contém um ***id*** que identifica a
 </html>
 ```
 
-***fragment-1/src/index.js***: a aplicação satellite é um "vanilla", o fragment-1 é uma aplicação em React e o fragment-2 é uma aplicação em Vue. Fiz dessa maneira para demonstrar que essa arquitetura nos permite utilizarmos a stack que bem entendermos, tratando a comunicação entre elas de forma homogênea. Aqui iremos, da mesma forma, escutar por eventos de iframes. Isso é necessário pois, da mesma forma que enviamos eventos dos micro frontends para o satélite, o satélite também pode nos enviar dados, como as respostas das próprias requisições que solicitamos:
+**fragment-1/src/index.js**: a aplicação satellite é um "vanilla", o fragment-1 é uma aplicação em React e o fragment-2 é uma aplicação em Vue. Fiz dessa maneira para demonstrar que essa arquitetura nos permite utilizarmos a stack que bem entendermos, tratando a comunicação entre elas de forma homogênea. Aqui iremos, da mesma forma, escutar por eventos de iframes. Isso é necessário pois, da mesma forma que enviamos eventos dos micro frontends para o satélite, o satélite também pode nos enviar dados, como as respostas das próprias requisições que solicitamos:
 
 ```jsx
 import ReactDOM from 'react-dom';
@@ -251,7 +253,7 @@ new Vue({
 }).$mount('#app')
 ```
 
-***fragment-2/src/App.vue***: também a mesma ideia da aplicação React, porém escrita em Vue.js. Enviamos uma requisição, aguardamos pela resposta e mostramos o resultado na tela:
+**fragment-2/src/App.vue**: também a mesma ideia da aplicação React, porém escrita em Vue.js. Enviamos uma requisição, aguardamos pela resposta e mostramos o resultado na tela:
 
 ```html
 <template>
